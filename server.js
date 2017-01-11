@@ -1,40 +1,32 @@
 //Get packages
 var express = require('express');
 var morgan = require("morgan");
-var path = require("path");
 
 // Invoke App
 var app = express();
 
-//Logger
+//Config
 app.use(morgan('dev'));
+app.set('view engine', 'pug');
 
 //Global variables
 var myPort = process.env.PORT;
 // var myHost = process.env.IP;
 
+// location of HTML templates
+app.set('views', __dirname + '/views');
 
 //Middleware: homepage
 app.get('/', function(req, res) {
-    res.sendFile(path.join(__dirname + '/public/home.html'));
-});
+  
+  var headIP   = req.headers['x-forwarded-for'];
+  var headLang = req.headers['accept-language'].split(',')[0];
+  var headOS   = req.headers['user-agent'];
+  
+  res.render('home', { htmlIP: headIP, htmlLang: headLang, htmlOS: headOS });
 
-//Middleware: service
-app.get('/:input', function (req, res) {
-  
-  //Initialize variables
-  var output = {"unix": null, "natural": null};
-  
-  //Write response
-  console.log(output);
-  res.send(output);
 });
 
 app.listen(myPort, function () {
   console.log('Example app listening on port '+myPort+'!');
 });
-
-
-/*
- * Functions
- */

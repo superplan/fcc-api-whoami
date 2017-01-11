@@ -1,0 +1,46 @@
+html
+  // Latest compiled and minified CSS
+  link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css')
+  head
+    style(type='text/css').
+      .mybody{
+      margin-top: 18px;
+      }
+      .mysize{
+      font-size: 16px;
+      }
+  body.mybody
+    .container-fluid
+      .jumbotron
+        .page-header
+          h1#caption.text-center This is a request header parser
+        #contentofsite.row
+          .col-xs-12.well
+            p
+              | This JavaScript app has been developed as an exercise from 
+              a(href='https://www.freecodecamp.com') freecodecamp.com
+              |              with functionally similar to this: 
+              a(href='https://cryptic-ridge-9197.herokuapp.com/api/whoami/ ') cryptic-ridge-9197
+            p User Stories: 
+            ul.mysize(style='list-style-type:square')
+              li I can get the IP address, language and operating system for my browser.
+            p Example usage:
+            ul.mysize(style='list-style-type:square')
+              li
+                | Just load or reload this page.
+            p Here is the result:
+            p
+              font(face='courier', size='3')
+                | {"ip": #{htmlIP}, "language": #{htmlLang}, "software": #{htmlOS}}
+      #about.panel.panel-default
+        .panel-heading
+          h3.panel-title About this site
+        .panel-body
+          p
+            | This page is a 
+            a(href='https://www.freecodecamp.com') freecodecamp.com
+            |  coding excercise.
+          p
+            small
+              | Created by 
+              a(href='mailto:michael.kamfor@tu-dortmund.de') Michael K.
